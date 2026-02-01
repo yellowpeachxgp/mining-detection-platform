@@ -1,75 +1,20 @@
 <!doctype html>
 <html lang="zh">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-  <title>露天矿区损毁与复垦检测平台</title>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>露天矿区损毁与复垦检测平台</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
-  <script src="https://js.arcgis.com/4.29/"></script>
+    <!-- Chart.js 必须在 ArcGIS 之前加载，否则 AMD 冲突 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="./style.css"/>
-</head>
-<body>
-  <div id="app">
-    <div id="leftPanel">
-      <div style="padding-bottom: 12px; border-bottom: 2px solid #2563eb;">
-        <h1 style="margin: 0; font-size: 18px; color: #1e40af;">🌍 矿区检测平台</h1>
-        <p style="margin: 4px 0 0 0; font-size: 11px; color: #666;">NDVI时间序列 + MATLAB KNN检测</p>
-      </div>
-
-      <div class="card">
-        <h3>📤 上传数据</h3>
-        <div class="row">
-          <label>NDVI 时序 GeoTIFF (多波段)</label>
-          <input id="ndviFile" type="file" accept=".tif,.tiff"/>
-        </div>
-        <div class="row">
-          <label>裸煤概率 GeoTIFF (多波段)</label>
-          <input id="coalFile" type="file" accept=".tif,.tiff"/>
-        </div>
-        <div class="row">
-          <label>起始年份 (startyear)</label>
-          <input id="startyear" type="number" value="2010" min="1990" max="2030"/>
-        </div>
-        <button id="runBtn">▶️ 上传并运行检测</button>
-        <div id="status">等待中...</div>
-      </div>
-
-      <div class="card">
-        <h3>📊 点击地图 - NDVI 时间序列</h3>
-        <div id="info" style="min-height: 60px; background: #f5f5f5; padding: 8px; border-radius: 6px;">
-          <span style="color: #999;">点击地图上的任意位置查看该像元的NDVI时间序列曲线</span>
-        </div>
-        <canvas id="chart"></canvas>
-      </div>
-
-      <div class="card">
-        <h3>🗂️ 图层管理</h3>
-        <div id="layerListDiv" style="max-height: 200px; overflow-y: auto;"></div>
-      </div>
-
-      <div style="padding-top: 12px; border-top: 1px solid #e6e6e6; font-size: 11px; color: #888;">
-        <p style="margin: 6px 0;">
-          💡 <strong>使用说明:</strong>
-        </p>
-        <ul style="margin: 6px 0; padding-left: 16px;">
-          <li>上传NDVI和裸煤概率GeoTIFF文件</li>
-          <li>点击"运行检测"按钮启动MATLAB算法</li>
-          <li>在地图上点击像元查看详细信息</li>
-          <li>左侧图层控制切换不同结果图层</li>
-        </ul>
-        <p style="margin: 6px 0 0 0;">
-          ⚠️ <strong>注意:</strong> 大文件处理可能需要较长时间，请耐心等待
-        </p>
-      </div>
-    </div>
-
-    <div id="viewDiv"></div>
-  </div>
-
-  <script src="./main.js"></script>
-</body>
+    <!-- ArcGIS Maps SDK -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.29/"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
-
